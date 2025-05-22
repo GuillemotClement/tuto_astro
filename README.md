@@ -56,7 +56,88 @@ Je vais terminer le tutoriel d'Astro, puis continuer à ajouter plus d'articles.
 ```
 En haut du fichier, on retrouve des informations `frontmatter` qui permettent d'ajouter des metadonnees qui fournissent des informations a propos de l'article que Astro peut venir utiliser.
 
+### Variables
 
+On peut venir ajouter du JS dans le frontmatter d'un fichier astro.
+
+Pour utiliser une variable : `{variable_name}`
+
+On peut definir des variables TS ou JS.
+```astro
+---
+// definition d'une variable
+const pageTitle = "A propos de mois";
+---
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="generator" content={Astro.generator} />
+  // utilisation de la varaible
+  <title>{pageTitle}</title>
+</head>
+<body>
+<a href="/">Accueil</a>
+<a href="/about/">À propos</a>
+<a href="/blog/">Blog</a>
+<h1>{pageTitle}</h1>
+```
+
+On peut utiliser n'importe quel expression JS (fonction, expression et operateurs logique)
+
+```astro 
+---
+const pageTitle = "À propos de moi";
+
+const identity = {
+  firstName: "Sarah",
+  country: "Canada",
+  occupation: "Rédactrice technique",
+  hobbies: ["photographie", "observation des oiseaux", "baseball"],
+};
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Rédaction de documentation"];
+---
+```
+On peut ensuite venir parcourir la liste dans le fichier 
+
+```astro
+<p>Voici quelques faits me concernant :</p>
+<ul>
+  <li>Je m'appelle {identity.firstName}.</li>
+  <li>Je vis au {identity.country} et je travaille en tant que {identity.occupation}.</li>
+  // on parcour la liste declarer dans le frontmatter
+  {identity.hobbies.length >= 2 &&
+    <li>Deux de mes loisirs sont : {identity.hobbies[0]} et {identity.hobbies[1]}</li>
+  }
+</ul>
+<p>Voici mes compétences :</p>
+<ul>
+// on parcour la liste declarer dans le frontmatter
+  {skills.map((skill) => <li>{skill}</li>)}
+</ul>
+```
+
+
+### Affichage conditionnnelle
+
+```astro
+const happy = true;
+const finished = false;
+const goal = 3;
+```
+
+Ensuite dans le template :
+
+```astro 
+{happy && <p>Je suis heureux d'apprendre Astro !</p>}
+
+{finished && <p>J'ai terminé ce tutoriel !</p>}
+
+{goal === 3 ? <p>Mon objectif est de terminer en 3 jours.</p> : <p>Mon objectif n'est pas de 3 jours.</p>}
+```
 
 ## 🧞 Commands
 
