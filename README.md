@@ -139,6 +139,57 @@ Ensuite dans le template :
 {goal === 3 ? <p>Mon objectif est de terminer en 3 jours.</p> : <p>Mon objectif n'est pas de 3 jours.</p>}
 ```
 
+
+
+
+
+
+### CSS
+
+Pour ajouter du css, on peut utiliser les balises `<style></style>`
+
+```astro
+<style>
+  h1 {
+    color: purple;
+    font-size: 4rem;
+  }
+  .skill {
+    color: green;
+    font-weight: bold;
+  }
+</style>
+```
+
+Pour ajouter une classe
+```astro
+<p>Mes compétences sont :</p>
+<ul>
+  {skills.map((skill) => <li class="skill">{skill}</li>)}
+</ul>
+```
+
+Les balises `<style>` peut egalement referencer des variables du Js provenant du frontmatter avec la directive `define:vars={ {...} }`
+On peut definir ces variables dans le front matter et les utiliser dans la balise `<style>`
+
+```astro
+---
+const skillColor = "navy";
+---
+```
+
+On peut ensuite l'utiliser 
+
+```astro 
+<style define:vars={{skillColor}}>
+  .skill {
+    color: green;
+    color: var(--skillColor);
+    font-weight: bold;
+  }
+</style>
+```
+
 ## 🧞 Commands
 
 | Command                  | Action                                           |
