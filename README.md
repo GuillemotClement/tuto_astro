@@ -208,13 +208,65 @@ import '../styles/global.css';
 ---
 ```
 
+### Composant
+
+Les composants Astro permettent de reutiliser du code.
+
+Par exemple un composant header, footer, etc 
+
+Ces composants viendront se placer dans un dossier `src/components/Navigation.astro`
+
+```astro
+---
+---
+<a href="/">Accueil</a>
+<a href="/a-propos/">À propos</a>
+<a href="/blog/">Blog</a>
+```
+
+Une fois le composant definis, on peut venir l'importer dans les fichiers ayant besoin 
+
+```astro 
+---
+import Navigation from '../components/Navigation.astro';
+import "../styles/global.css";
+
+const pageTitle = "Page d'accueil";
+---
+```
+
+Puis on place le composant 
+
+```astro
+<Navigation />
+```
 
 
+Il est possible d'utiliser un composant dans un composant.
 
+### JavaScript
 
+Dans un dossier `src/scripts/fichier.js`, on viens y placer les scripts que l'on as besoin
 
+```js
+document.querySelector('.hamburger').addEventListener('click', () => {
+  document.querySelector('.nav-links').classList.toggle('expanded');
+});
+```
 
+on viens ensuite l'importer dans les fichiers
 
+```astro
+  <Footer />
+  <script>
+    document.querySelector('.hamburger')?.addEventListener('click', () => {
+      document.querySelector('.nav-links')?.classList.toggle('expanded');
+    });
+
+    import "../scripts/menu.js";
+  </script>
+</body>
+```
 
 
 
@@ -269,6 +321,8 @@ Inside of your Astro project, you'll see the following folders and files:
 ├── src/
 │   └── pages/
 │       └── index.astro
+|   |- components/
+|       |-- Navitation.astro
 |   |- styles/
 |       |-- global.css
 └── package.json
