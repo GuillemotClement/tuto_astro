@@ -3,14 +3,15 @@
 ## 👨🏻‍💻 Note
 
 ### Routing
-Les fichiers Astro utilise l'extension `.astro`.
+Les fichiers Astro utilisent l'extension `.astro`.
 
-Le nomn du fichier correspond au path a passer.
-Exemple : une page `about.astro` est accessible avec `http://localhost/about`
+Le nom du fichier correspond au endpoint.
+
+***Exemple : une page `about.astro` est accessible avec `http://localhost/about`***
 
 On utilise du HTML classique pour definir le contenu de la page.
 
-`<a href="/about">` => pour declarer un nouveau lien et acceder a la page
+Pour definir un lien, on utilise la balise classique `<a href="/about">`
 
 ### Blog
 
@@ -148,6 +149,7 @@ Ensuite dans le template :
 
 Pour ajouter du css, on peut utiliser les balises `<style></style>`
 
+Le style definis via les balises seront limiter a la page dans laquel on le declare.
 ```astro
 <style>
   h1 {
@@ -190,6 +192,54 @@ On peut ensuite l'utiliser
 </style>
 ```
 
+### Style globale
+
+Pour definir un style global, on creer un fichier `global.css` que l'on vient ensuite importer dans les differentes pages.
+
+On viens placer ce fichier dans `src/styles/global.css`.
+
+Dans ce fichier, on declare les differentes styles que l'on souhaite appliquer au niveau global.
+
+On viens ensuite importer ce fichier dans chacun de nos fichiers 
+
+```astro
+---
+import '../styles/global.css';
+---
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 🧞 Commands
 
 | Command                  | Action                                           |
@@ -219,6 +269,8 @@ Inside of your Astro project, you'll see the following folders and files:
 ├── src/
 │   └── pages/
 │       └── index.astro
+|   |- styles/
+|       |-- global.css
 └── package.json
 ```
 - `pages` : permet de declarer les differentes pages du site. Une page = un fichier.
